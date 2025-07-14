@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -59,4 +61,11 @@ dependencies {
 
     //Splash Api
     implementation(libs.androidx.core.splashscreen)
+
+    //appstore
+    implementation(libs.androidx.datastore.preferences)
+
+    //Dagger-hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 }
