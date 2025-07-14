@@ -1,7 +1,6 @@
 package com.vineesh.newsapp.di
 
 import android.content.Context
-import com.vineesh.newsapp.NewsApplication
 import com.vineesh.newsapp.data.LoginUserManagerImpl
 import com.vineesh.newsapp.domain.manager.LoginUserManager
 import com.vineesh.newsapp.domain.usecase.IsOnBoardUseCase

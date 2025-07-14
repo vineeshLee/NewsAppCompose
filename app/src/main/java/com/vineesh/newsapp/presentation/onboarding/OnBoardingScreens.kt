@@ -4,12 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -21,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.vineesh.newsapp.presentation.Dimensions.IndicatorBoxWidth
 import com.vineesh.newsapp.presentation.Dimensions.mediumPadding_24
 import com.vineesh.newsapp.presentation.common.NewsButton
@@ -29,7 +26,7 @@ import com.vineesh.newsapp.presentation.common.NewsLabelButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnBoardingScreens(modifier: Modifier = Modifier) {
+fun OnBoardingScreens(event:(OnBoardingEvent)-> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
 
         val pagerState = rememberPagerState(initialPage = 0) {
@@ -51,7 +48,7 @@ fun OnBoardingScreens(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Footer(pagerState, buttonState)
+        Footer(pagerState, buttonState,event)
 
         Spacer(modifier = Modifier.weight(.3f))
     }
@@ -60,7 +57,8 @@ fun OnBoardingScreens(modifier: Modifier = Modifier) {
 @Composable
 private fun Footer(
     pagerState: PagerState,
-    buttonState: State<List<String>>
+    buttonState: State<List<String>>,
+    event: (OnBoardingEvent) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -74,7 +72,7 @@ private fun Footer(
         CircleIndicator(pagerState)
 
 //            BackButton and NextButton
-        BackAndNextButton(buttonState, pagerState)
+        BackAndNextButton(buttonState, pagerState,event)
     }
 }
 
@@ -96,7 +94,7 @@ private fun CircleIndicator(pagerState: PagerState) {
 
 @Composable
 private fun BackAndNextButton(
-    buttonState: State<List<String>>, pagerState: PagerState
+    buttonState: State<List<String>>, pagerState: PagerState, event: (OnBoardingEvent) -> Unit
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         val scope = rememberCoroutineScope()
@@ -109,8 +107,8 @@ private fun BackAndNextButton(
         }
         NewsButton(buttonState.value[1], onClick = {
             scope.launch {
-                if (pagerState.currentPage == 3) {
-                    //TODO:Navigate to home screen
+                if (pagerState.currentPage == 2) {
+                    event.invoke(OnBoardingEvent.SaveOnBoarding)
                 } else {
                     pagerState.animateScrollToPage(pagerState.currentPage + 1)
                 }
