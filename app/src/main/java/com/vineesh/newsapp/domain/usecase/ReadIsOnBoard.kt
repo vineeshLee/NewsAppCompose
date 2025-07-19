@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 data class ReadIsOnBoard(
     private val loginUserManager: LoginUserManager
 ) {
-    suspend operator fun invoke(): Flow<Boolean>{
+    operator fun invoke(): Flow<Boolean>{
         return loginUserManager.readIsOnBoard()
     }
 }
