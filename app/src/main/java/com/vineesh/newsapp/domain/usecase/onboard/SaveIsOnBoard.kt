@@ -1,4 +1,4 @@
-package com.vineesh.newsapp.domain.usecase
+package com.vineesh.newsapp.domain.usecase.onboard
 
 import com.vineesh.newsapp.domain.manager.LoginUserManager
 

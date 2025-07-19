@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -72,5 +74,19 @@ dependencies {
     //Navigation
     implementation (libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    //Accompanist
+    implementation(libs.accompanist.systemuicontroller)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Paging 3
+    implementation (libs.androidx.paging.runtime)
+    implementation (libs.androidx.paging.compose)
+
+    //Coil
+    implementation(libs.coil.compose)
 
 }

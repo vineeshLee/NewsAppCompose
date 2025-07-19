@@ -7,4 +7,7 @@ object Dimensions {
     val lowPadding_4=4.dp
     val IndicatorSize=12.dp
     val IndicatorBoxWidth=10.dp
+    val articleCardSize=100.dp
+    val SmallIconSize = 11.dp
+    val IconSize = 20.dp
 }

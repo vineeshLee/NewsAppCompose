@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vineesh.newsapp.domain.usecase.IsOnBoardUseCase
+import com.vineesh.newsapp.domain.usecase.onboard.IsOnBoardUseCase
 import com.vineesh.newsapp.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -25,7 +25,7 @@ class MainViewModel @Inject constructor(
     init {
         useCase.readIsOnBoard.invoke().onEach { readIsOnBoard ->
             if (readIsOnBoard) {
-                _startDestination.value = Route.NewsNavigationNavigation.route
+                _startDestination.value = Route.NewsNavigation.route
             } else {
                 _startDestination.value = Route.AppStartNavigation.route
             }

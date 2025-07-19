@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textColor">#090909</color>
+    <color name="lowGrey">#979797</color>
+    <color name="searchBar">#EDEDED</color>
     <color name="background">#FFFFFF</color>
+    <color name="shimmer">#A1A1A1</color>
 </resources>

@@ -1,14 +1,17 @@
 package com.vineesh.newsapp.presentation.navgraph
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.vineesh.newsapp.presentation.home.HomeScreen
+import com.vineesh.newsapp.presentation.home.HomeViewModel
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingScreens
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun NavGraph(startDestination: String) {
@@ -24,20 +27,16 @@ fun NavGraph(startDestination: String) {
             }
         }
 
-        navigation(route = Route.NewsNavigationNavigation.route,
-            startDestination = Route.HomeScreenScreen.route){
+        navigation(route = Route.NewsNavigation.route,
+            startDestination = Route.NewsNavigatorScreen.route){
 
-            composable(route= Route.HomeScreenScreen.route) {
+            composable (route = Route.NewsNavigatorScreen.route){
 
-            }
-            composable(route= Route.SearchScreen.route) {
+                val viewModel: HomeViewModel =hiltViewModel()
+                val newsList=viewModel.news.collectAsLazyPagingItems()
+                HomeScreen(newsList,{
 
-            }
-            composable(route= Route.BookMarkScreen.route) {
-
-            }
-            composable(route= Route.DetailsScreen.route) {
-
+                })
             }
         }
     }
