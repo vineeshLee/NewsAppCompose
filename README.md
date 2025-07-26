@@ -5,7 +5,6 @@ This is a news application built using modern Android development practices. It 
 ## Features
 
 *   **Browse News Articles:** View a list of the latest news articles.
-*   **Offline Caching:** News articles are stored locally, allowing users to read them even when offline.
 *   **Pagination:** Articles are loaded in chunks as the user scrolls, improving performance and reducing data usage.
 *   **Clean Architecture:** The codebase is structured following Clean Architecture principles for better separation of concerns, testability, and maintainability.
 *   **MVVM (Model-View-ViewModel):** The UI layer uses the MVVM architectural pattern.
