@@ -89,4 +89,10 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
 
+    //Room
+    implementation (libs.androidx.room.runtime)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
+
 }

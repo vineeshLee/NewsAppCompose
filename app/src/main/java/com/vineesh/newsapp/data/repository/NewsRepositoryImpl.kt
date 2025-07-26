@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.vineesh.newsapp.data.remote.NewsApi
 import com.vineesh.newsapp.data.remote.NewsPagingSource
+import com.vineesh.newsapp.data.remote.SearchNewsPagingSource
 import com.vineesh.newsapp.domain.model.Article
 import com.vineesh.newsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +20,22 @@ class NewsRepositoryImpl(
                 NewsPagingSource(
                     newsApi = newsApi,
                     source = params.joinToString(separator = ",")
+                )
+            }
+        ).flow
+    }
+
+    override fun searchNews(
+        searchQuery: String,
+        sources: List<String>
+    ): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchNewsPagingSource(
+                    searchQuery = searchQuery,
+                    api = newsApi,
+                    sources = sources.joinToString(separator = ",")
                 )
             }
         ).flow

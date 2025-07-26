@@ -11,6 +11,8 @@ import com.vineesh.newsapp.presentation.home.HomeScreen
 import com.vineesh.newsapp.presentation.home.HomeViewModel
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingScreens
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingViewModel
+import com.vineesh.newsapp.presentation.search.SearchScreen
+import com.vineesh.newsapp.presentation.search.SearchViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
@@ -31,13 +33,17 @@ fun NavGraph(startDestination: String) {
             startDestination = Route.NewsNavigatorScreen.route){
 
             composable (route = Route.NewsNavigatorScreen.route){
-
                 val viewModel: HomeViewModel =hiltViewModel()
                 val newsList=viewModel.news.collectAsLazyPagingItems()
                 HomeScreen(newsList,{
 
                 })
             }
+
+           /* composable (route = Route.NewsNavigatorScreen.route){
+                val viewModel: SearchViewModel =hiltViewModel()
+                SearchScreen(viewModel.state.value, event =viewModel::onEvent)
+            }*/
         }
     }
 }

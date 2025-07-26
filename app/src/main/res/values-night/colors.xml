@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textColor">#0F0F0F</color>
+    <color name="textColor">#FFFFFF</color>
     <color name="background">#FFFFFF</color>
     <color name="lowGrey">#979797</color>
     <color name="shimmer">#A1A1A1</color>
     <color name="searchBar">#EDEDED</color>
+    <color name="body">#E6E6E6</color>
 </resources>

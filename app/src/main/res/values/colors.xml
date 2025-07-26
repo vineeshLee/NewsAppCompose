@@ -12,4 +12,5 @@
     <color name="searchBar">#EDEDED</color>
     <color name="background">#FFFFFF</color>
     <color name="shimmer">#A1A1A1</color>
+    <color name="body">#4E4B66</color>
 </resources>

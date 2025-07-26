@@ -8,6 +8,7 @@ import com.vineesh.newsapp.domain.manager.LoginUserManager
 import com.vineesh.newsapp.domain.repository.NewsRepository
 import com.vineesh.newsapp.domain.usecase.news.GetNews
 import com.vineesh.newsapp.domain.usecase.news.NewsUseCase
+import com.vineesh.newsapp.domain.usecase.news.SearchNews
 import com.vineesh.newsapp.domain.usecase.onboard.IsOnBoardUseCase
 import com.vineesh.newsapp.domain.usecase.onboard.ReadIsOnBoard
 import com.vineesh.newsapp.domain.usecase.onboard.SaveIsOnBoard
@@ -61,6 +62,6 @@ object AppModule {
     fun provideNewsUseCase(
         newsRepository: NewsRepository
     ): NewsUseCase {
-        return NewsUseCase(getNews = GetNews(newsRepository))
+        return NewsUseCase(getNews = GetNews(newsRepository), searchNews = SearchNews(newsRepository) )
     }
 }
