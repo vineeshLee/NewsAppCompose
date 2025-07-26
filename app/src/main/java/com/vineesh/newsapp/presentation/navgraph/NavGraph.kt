@@ -6,14 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.vineesh.newsapp.presentation.home.HomeScreen
-import com.vineesh.newsapp.presentation.home.HomeViewModel
+import com.vineesh.newsapp.presentation.bookmark.BookMarkViewModel
+import com.vineesh.newsapp.presentation.bookmark.BookmarkScreen
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingScreens
 import com.vineesh.newsapp.presentation.onboarding.OnBoardingViewModel
-import com.vineesh.newsapp.presentation.search.SearchScreen
-import com.vineesh.newsapp.presentation.search.SearchViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun NavGraph(startDestination: String) {
@@ -29,21 +25,29 @@ fun NavGraph(startDestination: String) {
             }
         }
 
-        navigation(route = Route.NewsNavigation.route,
-            startDestination = Route.NewsNavigatorScreen.route){
+        navigation(
+            route = Route.NewsNavigation.route,
+            startDestination = Route.NewsNavigatorScreen.route
+        ) {
 
-            composable (route = Route.NewsNavigatorScreen.route){
-                val viewModel: HomeViewModel =hiltViewModel()
-                val newsList=viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(newsList,{
+            composable(route = Route.NewsNavigatorScreen.route) {
+//                val viewModel: HomeViewModel =hiltViewModel()
+//                val newsList=viewModel.news.collectAsLazyPagingItems()
+//                HomeScreen(newsList,{
+//
+//                })
+
+                val viewModel: BookMarkViewModel = hiltViewModel()
+                BookmarkScreen(state = viewModel.state.value,
+                    navigateToDetails = {
 
                 })
             }
 
-           /* composable (route = Route.NewsNavigatorScreen.route){
-                val viewModel: SearchViewModel =hiltViewModel()
-                SearchScreen(viewModel.state.value, event =viewModel::onEvent)
-            }*/
+            /* composable (route = Route.NewsNavigatorScreen.route){
+                 val viewModel: SearchViewModel =hiltViewModel()
+                 SearchScreen(viewModel.state.value, event =viewModel::onEvent)
+             }*/
         }
     }
 }

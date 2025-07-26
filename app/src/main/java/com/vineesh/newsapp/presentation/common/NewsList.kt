@@ -42,6 +42,26 @@ fun NewsList(
 }
 
 @Composable
+fun NewsList(
+    modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onClick: (Article) -> Unit
+) {
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(mediumPadding_24),
+        contentPadding = PaddingValues(all = lowPadding_4)
+    ) {
+        items(
+            count = articles.size,
+        ) {
+                ArticleCard(article = articles[it], onClick = { onClick(articles[it]) })
+        }
+    }
+}
+
+@Composable
 fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
     val loadState = articles.loadState
     val error = when {

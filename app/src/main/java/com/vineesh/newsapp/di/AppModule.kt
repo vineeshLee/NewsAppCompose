@@ -1,14 +1,22 @@
 package com.vineesh.newsapp.di
 
+import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.vineesh.newsapp.data.LoginUserManagerImpl
+import com.vineesh.newsapp.data.local.NewsDao
+import com.vineesh.newsapp.data.local.NewsDatabase
+import com.vineesh.newsapp.data.local.NewsTypeConvertor
 import com.vineesh.newsapp.data.remote.NewsApi
 import com.vineesh.newsapp.data.repository.NewsRepositoryImpl
 import com.vineesh.newsapp.domain.manager.LoginUserManager
 import com.vineesh.newsapp.domain.repository.NewsRepository
+import com.vineesh.newsapp.domain.usecase.news.DeleteArticle
+import com.vineesh.newsapp.domain.usecase.news.GetBookMarks
 import com.vineesh.newsapp.domain.usecase.news.GetNews
 import com.vineesh.newsapp.domain.usecase.news.NewsUseCase
 import com.vineesh.newsapp.domain.usecase.news.SearchNews
+import com.vineesh.newsapp.domain.usecase.news.UpsertNews
 import com.vineesh.newsapp.domain.usecase.onboard.IsOnBoardUseCase
 import com.vineesh.newsapp.domain.usecase.onboard.ReadIsOnBoard
 import com.vineesh.newsapp.domain.usecase.onboard.SaveIsOnBoard
@@ -60,8 +68,34 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCase(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCase {
-        return NewsUseCase(getNews = GetNews(newsRepository), searchNews = SearchNews(newsRepository) )
+        return NewsUseCase(getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository),
+            upsertNews = UpsertNews(newsDao),
+            deleteArticle = DeleteArticle(newsDao),
+            getBookMarks = GetBookMarks(newsDao))
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = "news_db"
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
+
 }
