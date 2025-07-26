@@ -18,7 +18,10 @@ class BookMarkViewModel @Inject constructor(
     private val _state = mutableStateOf(BookMarkState())
     val state: State<BookMarkState> =_state
 
-    fun getNews(){
+    init {
+        getBookMarks()
+    }
+    fun getBookMarks(){
         newsUseCase.getBookMarks.invoke().onEach {
             _state.value=_state.value.copy(it)
         }.launchIn(viewModelScope)

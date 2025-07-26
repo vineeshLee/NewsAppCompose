@@ -26,10 +26,13 @@ import com.vineesh.newsapp.domain.model.Article
 import com.vineesh.newsapp.presentation.Dimensions.mediumPadding_24
 import com.vineesh.newsapp.presentation.common.NewsList
 import com.vineesh.newsapp.presentation.common.SearchBar
-import com.vineesh.newsapp.presentation.navgraph.Route
 
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToDetail: (Article) -> Unit,
+    navigateToSearch: () -> Unit
+) {
 
     val titles by remember {
         derivedStateOf {
@@ -69,7 +72,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             onValueChange = {},
             onSearch = {},
             onClick = {
-                navigate(Route.SearchScreen.route)
+                navigateToSearch.invoke()
             }
         )
 
@@ -89,7 +92,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = mediumPadding_24),
             articles = articles,
             onClick = {
-                //TODO: Navigate to Details Screen
+                navigateToDetail.invoke(it)
             }
         )
     }

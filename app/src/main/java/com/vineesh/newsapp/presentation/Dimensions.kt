@@ -11,4 +11,5 @@ object Dimensions {
     val articleDetailCardSize=300.dp
     val SmallIconSize = 11.dp
     val IconSize = 20.dp
+    val ExtraSmallPadding2 = 6.dp
 }

@@ -14,6 +14,7 @@ import com.vineesh.newsapp.domain.repository.NewsRepository
 import com.vineesh.newsapp.domain.usecase.news.DeleteArticle
 import com.vineesh.newsapp.domain.usecase.news.GetBookMarks
 import com.vineesh.newsapp.domain.usecase.news.GetNews
+import com.vineesh.newsapp.domain.usecase.news.GetNewsById
 import com.vineesh.newsapp.domain.usecase.news.NewsUseCase
 import com.vineesh.newsapp.domain.usecase.news.SearchNews
 import com.vineesh.newsapp.domain.usecase.news.UpsertNews
@@ -75,7 +76,8 @@ object AppModule {
             searchNews = SearchNews(newsRepository),
             upsertNews = UpsertNews(newsDao),
             deleteArticle = DeleteArticle(newsDao),
-            getBookMarks = GetBookMarks(newsDao))
+            getBookMarks = GetBookMarks(newsDao),
+            getNewsById = GetNewsById(newsDao))
     }
 
     @Provides

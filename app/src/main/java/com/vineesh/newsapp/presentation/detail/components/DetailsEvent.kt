@@ -1,7 +1,10 @@
 package com.vineesh.newsapp.presentation.detail.components
 
-sealed class DetailsEvent {
+import com.vineesh.newsapp.domain.model.Article
 
-    object SaveArticle : DetailsEvent()
+sealed class DetailsEvent {
+    data class UpsertDeleteArticle(val article: Article) : DetailsEvent()
+
+    object RemoveSideEffect : DetailsEvent()
 
 }

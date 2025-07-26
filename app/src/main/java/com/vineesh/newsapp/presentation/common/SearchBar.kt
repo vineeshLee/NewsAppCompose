@@ -1,6 +1,7 @@
 package com.vineesh.newsapp.presentation.common
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -76,7 +77,7 @@ fun SearchBar(
                     color = colorResource(id = R.color.textColor)
                 )
             },
-            shape = MaterialTheme.shapes.medium,
+            shape = MaterialTheme.shapes.extraLarge,
             colors =  TextFieldDefaults.colors(
                 focusedTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
@@ -102,8 +103,8 @@ fun Modifier.searchBar(): Modifier = composed {
     if (!isSystemInDarkTheme()) {
         border(
             width = 1.dp,
-            color = Color.Black,
-            shape = MaterialTheme.shapes.medium
+            color = colorResource(R.color.lowGrey),
+            shape = MaterialTheme.shapes.extraLarge
         )
     } else {
         this

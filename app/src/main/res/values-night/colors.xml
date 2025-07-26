@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="textColor">#FFFFFF</color>
-    <color name="background">#FFFFFF</color>
+    <color name="background">#434343</color>
     <color name="lowGrey">#979797</color>
     <color name="shimmer">#A1A1A1</color>
     <color name="searchBar">#EDEDED</color>

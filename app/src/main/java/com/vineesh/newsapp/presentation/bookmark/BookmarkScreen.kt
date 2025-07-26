@@ -33,7 +33,7 @@ fun BookmarkScreen(
     ) {
 
         Text(
-            text = "Bookmark",
+            text = "Bookmark'S",
             style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
             color = colorResource(
                 id = R.color.textColor

@@ -5,6 +5,7 @@ data class NewsUseCase(
     val searchNews: SearchNews,
     val upsertNews: UpsertNews,
     val deleteArticle: DeleteArticle,
-    val getBookMarks: GetBookMarks
+    val getBookMarks: GetBookMarks,
+    val getNewsById: GetNewsById
 ) {
 }
