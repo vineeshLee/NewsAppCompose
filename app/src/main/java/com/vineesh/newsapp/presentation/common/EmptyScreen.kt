@@ -43,7 +43,7 @@ fun EmptyScreen(error: LoadState.Error? = null) {
     }
 
     if (error == null) {
-        message = "You have not saved news so far !"
+        message = "No data available to show"
         icon = R.drawable.ic_document
     }
 
@@ -53,7 +53,7 @@ fun EmptyScreen(error: LoadState.Error? = null) {
 
     val alphaAnimation by animateFloatAsState(
         targetValue = if (startAnimation) 0.3f else 0f,
-        animationSpec = tween(durationMillis = 1000)
+        animationSpec = tween(durationMillis = 3000)
     )
 
     LaunchedEffect(key1 = true) {

@@ -40,12 +40,12 @@ class DetailsViewModel @Inject constructor(
 
     private suspend fun deleteArticle(article: Article) {
         newsUseCases.deleteArticle(article = article)
-        sideEffect = "Article deleted"
+        sideEffect = "Removed from bookmark"
     }
 
     private suspend fun upsertArticle(article: Article) {
         newsUseCases.upsertNews(article = article)
-        sideEffect = "Article Inserted"
+        sideEffect = "Added to bookmark"
     }
 
 }

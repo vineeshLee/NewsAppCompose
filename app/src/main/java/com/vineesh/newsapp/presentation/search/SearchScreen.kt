@@ -35,7 +35,7 @@ fun SearchScreen(
             .statusBarsPadding()
     ) {
         Text(
-            text = "Search here...",
+            text = "Search",
             style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
             color = colorResource(
                 id = R.color.textColor

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,8 +24,10 @@ import com.vineesh.newsapp.R
 import com.vineesh.newsapp.domain.model.Article
 import com.vineesh.newsapp.presentation.bookmark.BookMarkViewModel
 import com.vineesh.newsapp.presentation.bookmark.BookmarkScreen
+import com.vineesh.newsapp.presentation.common.NewsAlertDialog
 import com.vineesh.newsapp.presentation.detail.DetailsScreen
 import com.vineesh.newsapp.presentation.detail.DetailsViewModel
+import com.vineesh.newsapp.presentation.detail.components.DetailsEvent
 import com.vineesh.newsapp.presentation.home.HomeScreen
 import com.vineesh.newsapp.presentation.home.HomeViewModel
 import com.vineesh.newsapp.presentation.navgraph.Route
@@ -131,6 +134,35 @@ fun NewsNavigator() {
             }
             composable(route = Route.DetailsScreen.route) {
                 val viewModel: DetailsViewModel = hiltViewModel()
+                var showDialog by remember { mutableStateOf(false) }
+                var dialogMessage by remember { mutableStateOf("") }
+                val sideEffect = viewModel.sideEffect
+                LaunchedEffect(sideEffect) {
+                    if (sideEffect != null) {
+                        dialogMessage = sideEffect.toString() // Or extract the specific message
+                        showDialog = true
+                        viewModel.onEvent(DetailsEvent.RemoveSideEffect) // Clear the side effect *after* setting up the dialog
+                    }
+                    viewModel.onEvent(DetailsEvent.RemoveSideEffect)
+                }
+                if (showDialog) {
+                    NewsAlertDialog(
+                        title = "Success",
+                        message = dialogMessage,
+                        okMessage = "Done",
+                        cancelMessage = "", // Or provide a cancel message
+                        okClick = {
+                            showDialog = false
+                            // Add any other logic for OK click
+                        },
+                        cancelClick = {
+                            showDialog = false
+                            // Add any other logic for Cancel click (if you have a cancel button)
+                        },
+                        openDialog = showDialog
+                    )
+                }
+
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
                     ?.let { article ->
                         DetailsScreen(

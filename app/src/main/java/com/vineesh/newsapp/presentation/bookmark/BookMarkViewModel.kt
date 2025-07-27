@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class BookMarkViewModel @Inject constructor(
@@ -19,11 +20,13 @@ class BookMarkViewModel @Inject constructor(
     val state: State<BookMarkState> =_state
 
     init {
-        getBookMarks()
+        viewModelScope.launch {
+            getBookMarks()
+        }
     }
-    fun getBookMarks(){
+    suspend fun getBookMarks(){
         newsUseCase.getBookMarks.invoke().onEach {
-            _state.value=_state.value.copy(it)
+            _state.value=_state.value.copy(it.asReversed())
         }.launchIn(viewModelScope)
     }
 
