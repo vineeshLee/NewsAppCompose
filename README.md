@@ -1,4 +1,4 @@
-# News Application By Vineesh Lee
+# News Application
 
 This is a news application built using modern Android development practices. It fetches news articles from a News API, displays them to the user, allows user to bookmark the favorite news, and implements pagination for efficient loading of a large number of articles.
 
@@ -43,3 +43,13 @@ The MVVM pattern is used within the Presentation layer:
 *   **Model:** Represents the data and business logic (primarily residing in the Domain and Data layers).
 *   **View:** The UI components (Composables) that display information to the user.
 *   **ViewModel:** Acts as a bridge between the View and the Model. It prepares and manages the data for the View and handles user interactions by delegating actions to the Domain layer.
+
+## Application screenshorts
+<div align="center">
+  <img width="200" alt="OnBoardingScreen" src="https://github.com/user-attachments/assets/6d872c4c-13f3-42ad-9f85-f1ff67efba1b" />
+  <img width="200" alt="HomeScreen" src="https://github.com/user-attachments/assets/a4c42b91-29fe-4c1f-a9f3-5c1c669463d7" />
+  <img width="200" alt="DetailsScreen" src="https://github.com/user-attachments/assets/9fe74f46-bab6-4a85-9520-b4cbf8c976cc" />
+  <img width="200" alt="SearchScreen" src="https://github.com/user-attachments/assets/54f1fe69-1671-4c33-86ee-38f50b4d3848" />
+  <img width="200" alt="BookMarkScreen" src="https://github.com/user-attachments/assets/6936084f-e293-4aaa-aac2-9926fd9a80f1" />
+</div>
+
